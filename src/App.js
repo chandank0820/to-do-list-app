@@ -36,9 +36,11 @@ function App() {
   const addTask = ()=>{
     if(newTask.trim()===''){
       setNewTask('');
-      return;
+      return; //Checking the empty input validation
     }
 
+
+    //method to add NewTask
     const newTaskItem={
       id:Date.now(),
       text:newTask,
@@ -48,6 +50,7 @@ function App() {
     setNewTask('');
   }
 
+  //save the task again after performing edit on it
   const saveTask=(taskId)=>{
     setTasks(
       tasks.map((task)=>task.id===taskId?{...task,text:editTaskText}:task)
@@ -55,12 +58,14 @@ function App() {
     setEditTaskId(null);
   }
 
+  //Toggling between marking as complete or not complete
   const toggle=(taskId)=>{
     setTasks(
       tasks.map((task)=>task.id===taskId?{...task,completed:!task.completed}:task)
     );
   };
 
+  //Method to delete task
   const deleteTask=(taskId)=>{
     setTasks(tasks.filter((task)=>task.id!==taskId));
   };
