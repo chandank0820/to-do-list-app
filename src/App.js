@@ -9,24 +9,19 @@ function App() {
   const [filter,setFilter]=useState('All');
   const [editTaskText,setEditTaskText]=useState('');
   const [editTaskId,setEditTaskId]=useState(null);
- 
 
  
   useEffect(()=>{
     const savedTasks=JSON.parse(localStorage.getItem('tasks'));
+    
     if(savedTasks){
-      try{
-        setTasks(savedTasks);
-      }catch(error){
-        console.log("failed to get data from local storage",error);
-      }
+      setTasks(savedTasks);
     }
   },[]);
 
   useEffect(()=>{
     if(tasks.length>0){
       localStorage.setItem('tasks',JSON.stringify(tasks));
-      
     }else{
       localStorage.removeItem('tasks');
     }
@@ -74,72 +69,116 @@ function App() {
     if(filter==='All') return true;
     if(filter==='Active') return !task.completed;
     if(filter==='Completed') return task.completed;
-    
+  
   })
 
   const editTask=(taskId,text)=>{
     setEditTaskId(taskId);
     setEditTaskText(text);
-    
   }
 
+  
   return (
     
-    <div className="App">
-      <h1>Add Your List here</h1>
-
-      {/* Input Task*/}
-      <div>
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e)=>setNewTask(e.target.value)}
-          placeholder='Enter new task'
-        />
-        
-        <button onClick={addTask}>Add Task</button>
-      </div>
-
-      {/* filtering */}
+  <div className="App">
       
-      <div>
-      
-      <i className="fas fa-hourglass-start">   </i> Filter      
-        <button onClick={()=>setFilter('All')}>All</button>
-        <button onClick={()=>setFilter('Active')}>Active</button>
-        <button onClick={()=>setFilter('Completed')}>Completed</button>
-       </div>
+ <div className="task-container">
+  <h1>Add Your List here</h1>
 
-      {/* List of Tasks */}
+  
+  <div className="input-task-container">
+    <input
+      type="text"
+      value={newTask}
+      onChange={(e) => setNewTask(e.target.value)}
+      placeholder="Enter new task"
+      className="task-input"
+    />
+    <button onClick={addTask} className="add-task-button">Add Task</button>
+  </div>
 
-      <ul>
-        {
-          filteredTasks.map((task)=>(
-            <li key={task.id}
-            style={{textDecoration:task.completed?'line-through':'',color:task.completed?'green':'red'}}
+  {/* Filtering */}
+  {tasks.length>0 && <div className="filter-container">
+    <i className="fas fa-hourglass-start filter-icon"></i>
+    <span className="filter-label">Filter:</span>
+    <button className="filter-button" onClick={() => setFilter('All')}>All</button>
+    <button className="filter-button" onClick={() => setFilter('Active')}>Active</button>
+    <button className="filter-button" onClick={() => setFilter('Completed')}>Completed</button>
+  </div>}
+</div>
+
+
+     
+      <table>
+   {filteredTasks.length>0 && <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Task</th>
+      <th>Status</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>}
+  <tbody>
+    {filteredTasks.map((task, index) => (
+      <tr key={task.id}>
+        <td>{index + 1}</td>
+
+        {/* edit functionality */}
+        <td style={{ width: '50%' }}>
+          {editTaskId === task.id ? (
+            <div>
+              <input
+                type="text"
+                value={editTaskText}
+                onChange={(e) => setEditTaskText(e.target.value)}
+              />
+              <button onClick={() => saveTask(task.id)}>Save</button>
+            </div>
+          ) : (
+            <span
+              onClick={() => toggle(task.id)}
+              style={{
+                textDecoration: task.completed ? 'line-through' : '',
+                color: task.completed ? 'green' : 'red',
+                cursor: 'pointer',
+              }}
             >
-              {editTaskId===task.id?
-              (<div>
-                <input
-                  type='text'
-                  value={editTaskText}
-                  onChange={(e)=>setEditTaskText(e.target.value)}
-                />
-                <button onClick={()=>saveTask(task.id)}>Save</button>
-              </div>):(
-                <div>
-                  <span onClick={()=>toggle(task.id)} style={{cursor:'pointer'}}>
-                    {task.text}
-                  </span>
-                  <button onClick={()=>toggle(task.id)}>{task.completed?"Mark as not completed":"Mark as completed"}</button>
-                  <button onClick={()=>editTask(task.id,task.text)}>Edit</button>
-                  <button onClick={()=>deleteTask(task.id,task.text)} style={{backgroundcolor:'red'}}>Delete</button>
-                </div>
-              )}
-            </li>
-          ))
-        }
-      </ul>
+              {task.text}
+            </span>
+          )}
+        </td>
+
+        {/* toggle */}
+        <td>
+          <button
+            onClick={() => toggle(task.id)}
+            style={{ backgroundColor: 'blue', color: 'white',width:'250px' }}
+          >
+            {task.completed ? 'Mark as not completed' : 'Mark as completed'}
+          </button>
+        </td>
+
+        {/* Edit button */}
+        <td>
+          <button onClick={() => editTask(task.id, task.text)} style={{ backgroundColor: '#737373' }}>
+            Edit
+          </button>
+        </td>
+
+        {/* Delete button */}
+        <td>
+          <button
+            onClick={() => deleteTask(task.id)}
+            style={{ backgroundColor: 'red', color: 'white' }}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
 
     </div>
