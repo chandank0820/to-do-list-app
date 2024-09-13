@@ -9,13 +9,19 @@ function App() {
   const [filter,setFilter]=useState('All');
   const [editTaskText,setEditTaskText]=useState('');
   const [editTaskId,setEditTaskId]=useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
  
   useEffect(()=>{
     const savedTasks=JSON.parse(localStorage.getItem('tasks'));
+    const savedMode = localStorage.getItem('darkMode');
     
     if(savedTasks){
       setTasks(savedTasks);
+    }
+
+    if (savedMode === 'true') {
+      setIsDarkMode(true);
     }
   },[]);
 
@@ -25,7 +31,8 @@ function App() {
     }else{
       localStorage.removeItem('tasks');
     }
-   },[tasks]);
+    localStorage.setItem('darkMode', isDarkMode);
+   },[tasks,isDarkMode]);
 
   
   const addTask = ()=>{
@@ -77,17 +84,30 @@ function App() {
     setEditTaskText(text);
   }
 
+  //function to toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   
   return (
+
     
-  <div className="App">
+    
+  <div className={isDarkMode ? 'dark-mode' : 'App'}>
+
+  <header>
+        <button onClick={toggleDarkMode}>
+          {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        </button>
+  </header>
       
- <div className="task-container">
+ <div className={isDarkMode?"task-container-dark-mode":"task-container"}>
   <h1>Add Your List here</h1>
 
   
   <div className="input-task-container">
-    <input
+     <input
       type="text"
       value={newTask}
       onChange={(e) => setNewTask(e.target.value)}
@@ -111,7 +131,7 @@ function App() {
      
       <table>
    {filteredTasks.length>0 && <thead>
-    <tr>
+    <tr >
       <th>S.No</th>
       <th>Task</th>
       <th>Status</th>
@@ -122,7 +142,7 @@ function App() {
   <tbody>
     {filteredTasks.map((task, index) => (
       <tr key={task.id}>
-        <td>{index + 1}</td>
+        <td className={isDarkMode?"index-dark":"index"}>{index + 1}</td>
 
         {/* edit functionality */}
         <td style={{ width: '50%' }}>
@@ -180,8 +200,10 @@ function App() {
   </tbody>
 </table>
 
+      </div>
 
-    </div>
+    
+    
   );
 }
 
