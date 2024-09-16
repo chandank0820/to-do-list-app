@@ -1,58 +1,57 @@
 .App {
   text-align: center;
-  font-family:Arial, Helvetica, sans-serif;
-  padding:20px;
-  background: linear-gradient(135deg,#ece9e6,#ffffff);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
+  
 }
-
-input{
-  padding:10px 15px;
-  margin-right:10px;
-  border:1px solid #ccc;
+input {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-size:16px;
-  width:250px;
-  box-shadow: 0px 2px 4px rgba(0,0, 0, 0.1);
+  font-size: 16px;
+  width: 250px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
-input:focus{
-  border-color:#007bff;
-  box-shadow:0px 2px 8px rgba(0,123,255,0.2);
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0px 2px 8px rgba(0, 123, 255, 0.2);
 }
 
-button{
-  padding:10px 20px;
-  margin:5px;
-  cursor:pointer;
-  background-color:#ff6600 ;
-  color:white;
-  border:none;
+button {
+  padding: 10px 20px;
+  /* margin:5px; */
+  cursor: pointer;
+  background-color: #ff6600;
+  color: white;
+  border: none;
   border-radius: 5px;
-  font-size:16px;
-  transition:background-color 0.3s,box-shadow 0.3s;
+  font-size: 16px;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-button:hover{
-  background-color:#0056b3;
-  box-shadow:0px 4px 8px rgba(0,123,255,0.4);
+
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.4);
 }
 
-button:active{
+button:active {
   background-color: #004494;
-  box-shadow: 0px 3px 6px rgba(0,123,255,0.4);
+  box-shadow: 0px 3px 6px rgba(0, 123, 255, 0.4);
 }
 
-
-h1{
+h1 {
   font-size: 2.5 rem;
-  color:#ff6600;
+  color: #ff6600;
   font-weight: 600;
   margin-bottom: 15px;
   letter-spacing: 1px;
@@ -66,27 +65,24 @@ table {
   border-collapse: collapse;
   margin: 20px 0;
   font-size: 18px;
-  text-align: left;
-
+  text-align: center;
 }
 
 thead {
   background-color: #f2f2f2;
-  
-
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
   border: 1px solid #ddd;
-
 }
 .filter-container {
   display: flex;
   align-items: center;
-   gap: 10px; 
-   justify-content: space between ;
-   align-items: center;
+  gap: 10px;
+  justify-content: space between;
+  align-items: center;
   margin-bottom: 20px;
   background-color: #f8f9fa;
   padding: 10px;
@@ -123,8 +119,12 @@ th, td {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
 }
-
-
+.icon {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .task-container {
   width: 100%;
   max-width: 600px;
@@ -134,8 +134,7 @@ th, td {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.task-container-dark-mode{
-  
+.task-container-dark-mode {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -143,14 +142,12 @@ th, td {
   background-color: #121212;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(211, 196, 196, 0.1);
-
-  
 }
 
 .input-task-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: ; */
   margin-bottom: 20px;
 }
 
@@ -176,7 +173,6 @@ th, td {
 .add-task-button:hover {
   background-color: #0056b3;
 }
-
 
 .filter-container {
   display: flex;
@@ -208,13 +204,13 @@ th, td {
 
 .filter-button:hover {
   background-color: #0056b3;
-}  
+}
 
 .dark-mode {
   text-align: center;
-  font-family:Arial, Helvetica, sans-serif;
-  padding:20px;
-  background: linear-gradient(135deg,#121212,#111111);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
+  background: linear-gradient(135deg, #121212, #111111);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -223,10 +219,10 @@ th, td {
   background-color: #121212;
   color: black;
 }
-.index{
-  color:black;
+.index {
+  color: black;
 }
-.index-dark{
+.index-dark {
   color: white;
 }
 @media (max-width: 768px) {
@@ -234,9 +230,9 @@ th, td {
     padding: 15px;
   }
 
-  h1 {
-    font-size: 2rem;
-  }
+  
+    
+  
 
   .task-container {
     padding: 15px;
@@ -259,32 +255,127 @@ th, td {
   .filter-container {
     justify-content: center; /* Center filters on smaller screens */
   }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 10px;
+  }
+
+  td {
+    text-align: center;
+    /* padding-left: 10%; */
+    position: relative;
+  }
+
+  /* td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    white-space: nowrap;
+    font-weight: bold;
+  } */
+
+  td button {
+    width: 100%;
+    margin-top: 10px;
+  }
+  header {
+    width: 250px;
+  }
+  header button{
+    width:60px;
+    position: absolute;
+  }
+
+  .icon {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  header button{
+    position: absolute;
+  left: 20px;
+  top: 10px;
+  }
+
+  td {
+    border: none;
+    font-size: 12px;
+    text:center;
+  }
+
 }
 
-header{
+header {
   position: absolute;
-  left:0;
-  top:10px;
+  left: 20px;
+  top: 10px;
 }
 
 @media (max-width: 480px) {
-  input, button {
-    width: 100%; /* Full width on very small screens */
+  .app {
+    display: flex;
+    align-items: space-between;
+    text-align: center;
+  }
+  button {
+    width: 100%; 
     margin-right: 0;
   }
 
   .task-input {
-    margin-right: 0;
+    margin-right: 0px;
     margin-bottom: 10px;
   }
 
   .filter-container {
-    flex-direction: column; /* Stack filters on top of each other */
+    flex-direction: column; 
     align-items: center;
   }
+
+  td {
+    border: none;
+    font-size: 12px;
+  }
+
+  td button {
+    padding: 6px;
+  }
+  header {
+    position: absolute;
+  left: 20px;
+  top: 10px;
+  }
+  .icon {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 5 rem;
+    color: #ff6600;
+    font-weight: 600;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-align: center;
+    border-bottom: 2px solid #ff6600;
+    padding-bottom: 10px;
+  }
 }
-
-
-
-
-
