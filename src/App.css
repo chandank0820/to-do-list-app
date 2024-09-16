@@ -28,7 +28,7 @@ input:focus {
 
 button {
   padding: 10px 20px;
-  /* margin:5px; */
+  margin:5px;
   cursor: pointer;
   background-color: #ff6600;
   color: white;
@@ -147,7 +147,6 @@ td {
 .input-task-container {
   display: flex;
   justify-content: space-between;
-  /* align-items: ; */
   margin-bottom: 20px;
 }
 
@@ -231,25 +230,23 @@ td {
   }
 
   
-    
-  
-
   .task-container {
     padding: 15px;
   }
 
   .task-input {
-    max-width: 100%; /* Full width for smaller screens */
+    max-width: 700%; /* Full width for smaller screens */
   }
 
   .add-task-button {
-    width: 100%; /* Full width button for smaller screens */
-    margin-top: 10px;
+    width: 20%; /* Full width button for smaller screens */
+    /* margin-top: 10px; */
   }
 
   .input-task-container {
-    flex-direction: column; /* Stack input and button on smaller screens */
-    align-items: stretch;
+    display: flex;
+    flex-direction: row; /* Stack input and button on smaller screens */
+    /* align-items: stretch; */
   }
 
   .filter-container {
@@ -289,11 +286,11 @@ td {
   } */
 
   td button {
-    width: 100%;
+    width: 250px;
     margin-top: 10px;
   }
   header {
-    width: 250px;
+    width:60px;
   }
   header button{
     width:60px;
@@ -357,7 +354,7 @@ header {
   }
   header {
     position: absolute;
-  left: 20px;
+  left: 0px;
   top: 10px;
   }
   .icon {
@@ -377,5 +374,11 @@ header {
     text-align: center;
     border-bottom: 2px solid #ff6600;
     padding-bottom: 10px;
+  }
+  .input-task-container {
+    display: flex;
+    flex-direction: column; /* Stack input and button on smaller screens */
+    /* align-items: stretch; */
+    align-items: center;
   }
 }
